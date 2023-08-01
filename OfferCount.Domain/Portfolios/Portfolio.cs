@@ -5,10 +5,27 @@ namespace OfferCount.Domain.Portfolios
 {
     public class Portfolio
     {
-        public string GUID { get; set; }
+        public Portfolio()
+        {
+            
+        }
+        public Portfolio( CriptoCurrency currency, double quantity, Account account)
+        {
+            Id = Guid.NewGuid().ToString();
+            Currency = currency;
+            Quantity = quantity;
+            Account = account;
+        }
+
+        public string Id { get; private set; }
         public CriptoCurrency Currency { get; set; }
         public double Quantity { get; set; }
         public Account Account { get; set; }
+
+        public void DecreaseAmount(double quantity)
+        {
+            Quantity -= quantity;
+        }
         
     }
 }
