@@ -1,0 +1,11 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/OfferCount.Domain.Test/bin/Debug/net6.0
+/OfferCount.Domain/bin/Debug/net6.0
+/OfferCount.Domain/obj/Debug/net6.0
+/OfferCount.Domain/obj/Release/net6.0
+/OfferCount.Domain/obj
+/OfferCount.Domain.Test/obj
+/.vs
