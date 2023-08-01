@@ -27,6 +27,14 @@ namespace OfferCount.Domain.Offers
 
             Situation = Situation.PROCESSED;
         }
+
+        public void Delete()
+        {
+            if (Situation != Situation.PROCESSED)
+                throw new OfferCantBeDeletedException();
+
+            Situation = Situation.CANCELED;
+        }
         
 
 
