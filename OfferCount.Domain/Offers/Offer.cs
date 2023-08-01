@@ -22,7 +22,10 @@ namespace OfferCount.Domain.Offers
 
         public void Process()
         {
+            if(Situation != Situation.OPEN)
+                throw new OfferCantBeProcessedException();
 
+            Situation = Situation.PROCESSED;
         }
         
 

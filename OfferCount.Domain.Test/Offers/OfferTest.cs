@@ -7,7 +7,7 @@ using Xunit;
 
 namespace OfferCount.Domain.Test.Offers
 {
-    public class OfferServiceTest
+    public class OfferTest
     {
 
         [Fact]
@@ -28,8 +28,13 @@ namespace OfferCount.Domain.Test.Offers
         public void ProcessOfferWithSucess()
         {
              var offer = new Offer(new Portfolio(), 1, 1);
-            
-
+            offer.Process();
+            offer.Should().NotBeNull();
+            offer.Situation.Should().Be(Situation.PROCESSED);
         }
+
+        
+
+
     }
 }

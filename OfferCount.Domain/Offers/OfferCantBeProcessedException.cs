@@ -6,10 +6,7 @@ using System.Threading.Tasks;
 
 namespace OfferCount.Domain.Offers
 {
-    public enum Situation
+    public class OfferCantBeProcessedException:Exception
     {
-        OPEN,
-        PROCESSED,
-        CANCELED
     }
 }
