@@ -13,3 +13,7 @@
 /src/OfferCount.Domain/obj
 /test/OfferCount.Domain.Test/bin/Debug/net6.0
 /test/OfferCount.Domain.Test/obj
+/src/OfferCounter.Domain/bin/Debug/net6.0
+/src/OfferCounter.Domain/obj
+/src/OfferCounter.Infrastructure/bin/Debug/net6.0
+/src/OfferCounter.Infrastructure/obj
