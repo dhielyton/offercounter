@@ -18,9 +18,12 @@ namespace OfferCounter.Domain.Portfolios
         }
 
         public string Id { get; private set; }
+        public string Address { get; set; }
         public CriptoCurrency Currency { get; set; }
+        public string CurrencyId { get; set; }
         public double Quantity { get; set; }
         public Account Account { get; set; }
+        public string AccountId { get; set; }
 
         public void DecreaseQuantity(double quantity)
         {

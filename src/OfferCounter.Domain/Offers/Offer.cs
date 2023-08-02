@@ -16,9 +16,12 @@ namespace OfferCounter.Domain.Offers
         }
         public string Id { get; set; }
         public Portfolio Portfolio { get; private set; }
+        public string PortfolioId { get; set; }
         public double UnitPrice { get; private set; }
         public double Quantity { get; private set; }
         public Situation Situation { get; private set; }
+
+        public DateTime CrationDate { get; set; }
 
         public void Process()
         {
