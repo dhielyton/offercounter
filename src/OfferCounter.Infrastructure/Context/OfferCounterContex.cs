@@ -18,7 +18,7 @@ namespace OfferCounter.Infrastructure.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.ApplyConfiguration(new CryptoCurrencyConfiguration());
+            modelBuilder.ApplyConfiguration(new CriptoCurrencyConfiguration());
             modelBuilder.ApplyConfiguration(new UserConfiguration());
             modelBuilder.ApplyConfiguration(new AccountConfiguration());
             modelBuilder.ApplyConfiguration(new PortfolioConfiguration());

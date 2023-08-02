@@ -15,6 +15,7 @@ namespace OfferCounter.Infrastructure.EntityConfiguration
         {
             builder.ToTable(nameof(Account));
             builder.HasKey(x => x.Id);
+            builder.Property(x => x.Deleted).IsRequired();
             builder.HasOne(x => x.User)
                 .WithOne()
                 .HasForeignKey<Account>(x => x.UserId);

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace OfferCounter.Infrastructure.EntityConfiguration
 {
-    public class CryptoCurrencyConfiguration : IEntityTypeConfiguration<CriptoCurrency>
+    public class CriptoCurrencyConfiguration : IEntityTypeConfiguration<CriptoCurrency>
     {
         public void Configure(EntityTypeBuilder<CriptoCurrency> builder)
         {
@@ -17,6 +17,7 @@ namespace OfferCounter.Infrastructure.EntityConfiguration
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Abbreviation).IsRequired().HasMaxLength(20);
             builder.Property(x => x.Name).IsRequired().HasMaxLength(50);
+            builder.Property(x => x.Deleted).IsRequired();
         }
     }
 }

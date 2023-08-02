@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace OfferCounter.Domain.SharedKernel
 {
-    public interface IRepository<T>: IEntity
+    public interface IRepository<T> where T : IEntity
     {
-        T Insert(IEntity entity);
+        Task<T> Insert(T entity);
 
-        T Update(IEntity entity);
+        Task<T> Update(T entity);
 
-        T Delete(IEntity entity);
+        Task<T> Delete(T entity);
 
-        T Get(string Id);
+        Task<T> Get(string Id);
     }
 }

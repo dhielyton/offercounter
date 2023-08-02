@@ -16,6 +16,7 @@ namespace OfferCounter.Infrastructure.EntityConfiguration
             builder.ToTable(nameof(User));
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Name).IsRequired().HasMaxLength(128);
+            builder.Property(x => x.Deleted).IsRequired();
         }
     }
 }

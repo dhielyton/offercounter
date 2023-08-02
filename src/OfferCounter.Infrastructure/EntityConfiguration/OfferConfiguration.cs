@@ -15,6 +15,7 @@ namespace OfferCounter.Infrastructure.EntityConfiguration
             builder.Property(x => x.PortfolioId).IsRequired();
             builder.Property(x => x.Situation).IsRequired();
             builder.Property(x => x.CrationDate).IsRequired();
+            builder.Property(x => x.Deleted).IsRequired();
             builder.HasOne(x => x.Portfolio)
                 .WithMany()
                 .HasForeignKey(x => x.PortfolioId);

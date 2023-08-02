@@ -9,5 +9,6 @@ namespace OfferCounter.Domain.SharedKernel
     public interface IEntity
     {
         string Id { get; }
+        public bool Deleted { get; set; }
     }
 }
