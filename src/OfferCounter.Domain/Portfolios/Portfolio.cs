@@ -1,9 +1,10 @@
 ﻿using OfferCounter.Domain.Accounts;
 using OfferCounter.Domain.Currencies;
+using OfferCounter.Domain.SharedKernel;
 
 namespace OfferCounter.Domain.Portfolios
 {
-    public class Portfolio
+    public class Portfolio:Entity
     {
         public Portfolio()
         {
@@ -17,7 +18,7 @@ namespace OfferCounter.Domain.Portfolios
             Account = account;
         }
 
-        public string Id { get; private set; }
+        
         public string Address { get; set; }
         public CriptoCurrency Currency { get; set; }
         public string CurrencyId { get; set; }

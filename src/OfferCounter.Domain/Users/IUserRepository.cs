@@ -7,13 +7,7 @@ using System.Threading.Tasks;
 
 namespace OfferCounter.Domain.Users
 {
-    public class User:Entity
+    public interface IUserRepository : IRepository<User>
     {
-        public User(string name)
-        {
-            Name = name;
-        }
-       
-        public string Name { get; set; }
     }
 }

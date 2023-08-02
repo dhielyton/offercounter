@@ -1,9 +1,10 @@
 ﻿using OfferCounter.Domain.Currencies;
 using OfferCounter.Domain.Portfolios;
+using OfferCounter.Domain.SharedKernel;
 
 namespace OfferCounter.Domain.Offers
 {
-    public class Offer
+    public class Offer : Entity
     {
 
         public Offer(Portfolio portfolio, double unitPrice, double quantity)
@@ -14,7 +15,6 @@ namespace OfferCounter.Domain.Offers
             Quantity = quantity;
             Situation = Situation.OPEN;
         }
-        public string Id { get; set; }
         public Portfolio Portfolio { get; private set; }
         public string PortfolioId { get; set; }
         public double UnitPrice { get; private set; }
@@ -25,7 +25,7 @@ namespace OfferCounter.Domain.Offers
 
         public void Process()
         {
-            if(Situation != Situation.OPEN)
+            if (Situation != Situation.OPEN)
                 throw new OfferCantBeProcessedException();
 
             Situation = Situation.PROCESSED;
@@ -38,7 +38,7 @@ namespace OfferCounter.Domain.Offers
 
             Situation = Situation.CANCELED;
         }
-        
+
 
 
     }
