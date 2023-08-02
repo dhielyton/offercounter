@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OfferCount.Domain.Portfolios
+namespace OfferCounter.Domain.SharedKernel
 {
-    public class QuantityNotSufficentException:Exception
+    public interface IEntity
     {
+        string Id { get; }
     }
 }

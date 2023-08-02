@@ -1,11 +1,11 @@
-﻿using OfferCount.Domain.Users;
+﻿using OfferCounter.Domain.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OfferCount.Domain.Accounts
+namespace OfferCounter.Domain.Accounts
 {
     public class Account
     {

@@ -1,11 +1,11 @@
 ﻿using FluentAssertions;
-using OfferCount.Domain.Currencies;
-using OfferCount.Domain.Offers;
-using OfferCount.Domain.Portfolios;
+using OfferCounter.Domain.Currencies;
+using OfferCounter.Domain.Offers;
+using OfferCounter.Domain.Portfolios;
 using System;
 using Xunit;
 
-namespace OfferCount.Domain.Test.Offers
+namespace OfferCounter.Domain.Test.Offers
 {
     public class OfferTest
     {

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OfferCount.Domain.Offers
+namespace OfferCounter.Infrastructure.Configuration
 {
-    public class OfferCantBeDeletedException:Exception
+    public class CryptoCurrencyConfiguration: Entity<>
     {
     }
 }

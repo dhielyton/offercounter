@@ -22,7 +22,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\OfferCount.Domain\OfferCount.Domain.csproj" />
+    <ProjectReference Include="..\..\src\OfferCounter.Domain\OfferCounter.Domain.csproj" />
   </ItemGroup>
+
+  
 
 </Project>

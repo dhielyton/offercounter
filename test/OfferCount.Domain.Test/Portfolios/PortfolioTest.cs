@@ -1,8 +1,8 @@
 ﻿using FluentAssertions;
-using OfferCount.Domain.Accounts;
-using OfferCount.Domain.Currencies;
-using OfferCount.Domain.Portfolios;
-using OfferCount.Domain.Users;
+using OfferCounter.Domain.Accounts;
+using OfferCounter.Domain.Currencies;
+using OfferCounter.Domain.Portfolios;
+using OfferCounter.Domain.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace OfferCount.Domain.Test.Portfolios
+namespace OfferCounter.Domain.Test.Portfolios
 {
     public class PortfolioTest
     {

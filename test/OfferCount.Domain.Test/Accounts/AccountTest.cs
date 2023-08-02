@@ -1,6 +1,6 @@
 ﻿using FluentAssertions;
-using OfferCount.Domain.Accounts;
-using OfferCount.Domain.Users;
+using OfferCounter.Domain.Accounts;
+using OfferCounter.Domain.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace OfferCount.Domain.Test.Accounts
+namespace OfferCounter.Domain.Test.Accounts
 {
     public class AccountTest
     {

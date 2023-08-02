@@ -1,5 +1,5 @@
 ﻿using FluentAssertions;
-using OfferCount.Domain.Currencies;
+using OfferCounter.Domain.Currencies;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace OfferCount.Domain.Test.Currencies
+namespace OfferCounter.Domain.Test.Currencies
 {
     public class CriptoCurrencyTest
     {

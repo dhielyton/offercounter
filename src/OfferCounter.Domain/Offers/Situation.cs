@@ -4,9 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OfferCount.Domain.Offers
+namespace OfferCounter.Domain.Offers
 {
-    public class OfferCantBeProcessedException:Exception
+    public enum Situation
     {
+        OPEN,
+        PROCESSED,
+        CANCELED
     }
 }

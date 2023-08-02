@@ -1,7 +1,7 @@
-﻿using OfferCount.Domain.Accounts;
-using OfferCount.Domain.Currencies;
+﻿using OfferCounter.Domain.Accounts;
+using OfferCounter.Domain.Currencies;
 
-namespace OfferCount.Domain.Portfolios
+namespace OfferCounter.Domain.Portfolios
 {
     public class Portfolio
     {

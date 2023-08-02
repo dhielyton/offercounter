@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OfferCount.Domain.SharedKernel
+namespace OfferCounter.Domain.Offers
 {
-    public interface IEntity
+    public class OfferCantBeDeletedException:Exception
     {
-        string Id { get; }
     }
 }

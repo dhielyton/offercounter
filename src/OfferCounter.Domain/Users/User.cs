@@ -4,22 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OfferCount.Domain.Currencies
+namespace OfferCounter.Domain.Users
 {
-    public class CriptoCurrency
+    public class User
     {
-        public CriptoCurrency(string abbreviation, string name)
+        public User(string name)
         {
-            Abbreviation = abbreviation;
             Name = name;
         }
 
         public string Id { get; set; }
-        public string Abbreviation { get; set; }
         public string Name { get; set; }
-
-
-
-
     }
 }
