@@ -22,8 +22,11 @@ namespace OfferCount.Domain.Portfolios
         public double Quantity { get; set; }
         public Account Account { get; set; }
 
-        public void DecreaseAmount(double quantity)
+        public void DecreaseQuantity(double quantity)
         {
+            if(quantity > Quantity)
+                throw new QuantityNotSufficentException();
+
             Quantity -= quantity;
         }
         

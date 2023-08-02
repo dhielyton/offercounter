@@ -8,6 +8,12 @@ namespace OfferCount.Domain.Currencies
 {
     public class CriptoCurrency
     {
+        public CriptoCurrency(string abbreviation, string name)
+        {
+            Abbreviation = abbreviation;
+            Name = name;
+        }
+
         public string Id { get; set; }
         public string Abbreviation { get; set; }
         public string Name { get; set; }

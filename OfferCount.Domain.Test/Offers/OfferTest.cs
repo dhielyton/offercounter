@@ -32,7 +32,7 @@ namespace OfferCount.Domain.Test.Offers
         }
 
         [Fact]  
-        public void ProcessOfferWithOfferCantBeProcessedException()
+        public void ProcessOfferThrowsOfferCantBeProcessedException()
         {
             var offer = new Offer(new Portfolio(), 1, 1);
             offer.Process();
@@ -52,7 +52,7 @@ namespace OfferCount.Domain.Test.Offers
         }
 
         [Fact]
-        public void DeleteOfferWithOfferCantBeDeletedException()
+        public void DeleteOfferThrowsOfferCantBeDeletedException()
         {
             var offer = new Offer(new Portfolio(), 1, 1);
             offer.Process();

@@ -18,7 +18,7 @@ namespace OfferCount.Domain.Test.Portfolios
         [Fact]
         public void CreatePortfolioWithSucess()
         {
-            var currency = new CriptoCurrency();
+            var currency = new CriptoCurrency("BTC","BITCOIN");
             var account = new Account();
             var portfolio = new Portfolio(currency, 0.10000, account);
             portfolio.Should().NotBeNull();
@@ -32,15 +32,24 @@ namespace OfferCount.Domain.Test.Portfolios
         [Fact]
         public void DecreaseAmountWithSucess()
         {
-            var currency = new CriptoCurrency();
+            var currency = new CriptoCurrency("BTC", "BITCOIN");
             var account = new Account();
             var portfolio = new Portfolio(currency, 0.10000, account);
-            portfolio.DecreaseAmount(0.000200);
+            portfolio.DecreaseQuantity(0.000200);
             portfolio.Quantity.Should().Be(0.0998);
 
+        }
 
+        [Fact]
+        public void DecreaseAmountThrowsQuantityNotSufficentException()
+        {
+            var currency = new CriptoCurrency("BTC", "BITCOIN");
+            var account = new Account();
+            var portfolio = new Portfolio(currency, 0.10000, account);
+            Action action = () => portfolio.DecreaseQuantity(5.000200);
+            action.Should().Throw<QuantityNotSufficentException>();
 
         }
-             
+
     }
 }
