@@ -1,4 +1,7 @@
-﻿using System;
+﻿using FluentAssertions;
+using OfferCount.Domain.Accounts;
+using OfferCount.Domain.Users;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,7 +16,10 @@ namespace OfferCount.Domain.Test.Accounts
         [Fact]
         public void CreateAccountWithSucess()
         {
-            
+            var user = new User("User");
+            var account = new Account(user);
+            account.Should().NotBeNull();
+            account.User.Should().NotBeNull();
         }
     }
 }

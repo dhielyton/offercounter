@@ -9,6 +9,11 @@ namespace OfferCount.Domain.Accounts
 {
     public class Account
     {
+        public Account(User user)
+        {
+            User = user;
+        }
+
         public int Id { get; set; }
         public User User { get; set; }
 
