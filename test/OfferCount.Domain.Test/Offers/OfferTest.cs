@@ -41,23 +41,23 @@ namespace OfferCounter.Domain.Test.Offers
         }
 
         [Fact]
-        public void DeleteOfferWithSucess()
+        public void CancelOfferWithSucess()
         {
             var offer = new Offer(new Portfolio(), 1, 1);
             offer.Process();
-            offer.Delete();
+            offer.Cancel();
             offer.Should().NotBeNull();
             offer.Situation.Should().Be(Situation.CANCELED);
 
         }
 
         [Fact]
-        public void DeleteOfferThrowsOfferCantBeDeletedException()
+        public void CancelOfferThrowsOfferCantBeDeletedException()
         {
             var offer = new Offer(new Portfolio(), 1, 1);
             offer.Process();
-            offer.Delete();
-            Action action = () => offer.Delete();
+            offer.Cancel();
+            Action action = () => offer.Cancel();
             action.Should().Throw<OfferCantBeDeletedException>();
         }
 

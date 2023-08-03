@@ -26,6 +26,12 @@
     <ProjectReference Include="..\..\src\OfferCounter.Domain\OfferCounter.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Offers\Data\Portfolio.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
   
 
 </Project>

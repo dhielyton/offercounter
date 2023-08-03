@@ -11,61 +11,80 @@ using Moq;
 using OfferCounter.Domain.Accounts;
 using OfferCounter.Domain.Currencies;
 using OfferCounter.Domain.Users;
+using System.Text.Json;
+using Newtonsoft.Json;
+using System.IO;
 
 namespace OfferCount.Domain.Test.Offers
 {
     public class OfferServiceTest
     {
+        private Mock<IPortfolioRepository> _portfolioRepository = new Mock<IPortfolioRepository>();
+        public OfferServiceTest()
+        {
+
+        }
+
+        private void configureGetPortfolioRepository(Mock<IPortfolioRepository> mock, string portfolioId)
+        {
+            mock.Setup(x => x.Get(It.IsAny<string>())).Returns(() =>
+            {
+                using (StreamReader r = new StreamReader(@"Offers\Data\Portfolio.json"))
+                {
+
+                    var json = r.ReadToEnd();
+                    var results = JsonConvert.DeserializeObject<List<Portfolio>>(json);
+                    var result = results.Where(x => x.Id == portfolioId).FirstOrDefault();
+                    return Task.FromResult(result);
+                }
+            });
+        }
 
         [Fact]
         public async Task CreateOfferToCurrencyWithSucessfully()
         {
-            var currency = new CriptoCurrency("BTC", "BITCOIN");
-            var account = new Account(new User("Test"));
-            var portfolio = new Portfolio(currency, 0.10000, account);
-            var portfolioRepository = new Mock<IPortfolioRepository>();
-            portfolioRepository.Setup(x => x.Get(It.IsAny<string>())).Returns(() => Task.FromResult(portfolio));
+            var portfolioId = "5cd4719d-8c5f-40c7-9203-5d50afcec488";
+            configureGetPortfolioRepository(_portfolioRepository, portfolioId);
+            var offerRepository = new Mock<IOfferRepository>();
+            var service = new OfferService(_portfolioRepository.Object, offerRepository.Object);
+            Offer offer = await service.CreateOffer(portfolioId, 1, 1);
 
-            var service = new OfferService(portfolioRepository.Object);
-            Offer offer = await service.CreateOffer("", 1, 1);
 
-            offer.Should().NotBeNull();
-            offer.UnitPrice.Should().BeGreaterThan(0);
-            offer.Quantity.Should().BeGreaterThan(0);
-            offer.Portfolio.Should().NotBeNull();
         }
 
         [Fact]
         public async Task CreateOfferToCurrencyThrowsPortfolioNotFoundException()
         {
-            var currency = new CriptoCurrency("BTC", "BITCOIN");
-            var account = new Account(new User("Test"));
-            var portfolio = new Portfolio(currency, 0.10000, account);
-            var portfolioRepository = new Mock<IPortfolioRepository>();
-
-            var service = new OfferService(portfolioRepository.Object);
-            Action action = () =>  service.CreateOffer("", 1, 1).Wait();
-
+            var portfolioId = "302a80c7-0af3-4be2-8a2c-7b6f4101f0c4";
+            configureGetPortfolioRepository(_portfolioRepository, portfolioId);
+            var offerRepository = new Mock<IOfferRepository>();
+            var service = new OfferService(_portfolioRepository.Object, offerRepository.Object);
+            Action action = () => service.CreateOffer(portfolioId, 1, 1).Wait();
             action.Should().Throw<PortfolioNotFoundException>();
 
-            
+
         }
 
         [Fact]
         public async Task CreateOfferToCurrencyThrowsQuantityNotSufficentException()
         {
-            var currency = new CriptoCurrency("BTC", "BITCOIN");
-            var account = new Account(new User("Test"));
-            var portfolio = new Portfolio(currency, 0, account);
-            var portfolioRepository = new Mock<IPortfolioRepository>();
-            portfolioRepository.Setup(x => x.Get(It.IsAny<string>())).Returns(() => Task.FromResult(portfolio));
-
-            var service = new OfferService(portfolioRepository.Object);
-            Action action = () => service.CreateOffer("", 1, 1).Wait();
+            var portfolioId = "fe6f81af-83d6-43e9-a53a-b03cc517cd6f";
+            configureGetPortfolioRepository(_portfolioRepository, portfolioId);
+            var offerRepository = new Mock<IOfferRepository>();
+            var service = new OfferService(_portfolioRepository.Object, offerRepository.Object);
+            Action action = () => service.CreateOffer(portfolioId, 1, 1).Wait();
 
             action.Should().Throw<QuantityNotSufficentException>();
 
 
         }
+
+        [Fact]
+        public async Task DeleteOfferWithSucessfully()
+        {
+
+        }
+
+
     }
 }

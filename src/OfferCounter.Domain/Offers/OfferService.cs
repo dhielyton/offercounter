@@ -10,10 +10,12 @@ namespace OfferCounter.Domain.Offers
     public class OfferService
     {
         private IPortfolioRepository _portfoliosRepository;
+        private IOfferRepository _offerRepository;
 
-        public OfferService(IPortfolioRepository portfoliosRepository)
+        public OfferService(IPortfolioRepository portfoliosRepository, IOfferRepository offerRepository)
         {
             _portfoliosRepository = portfoliosRepository;
+            _offerRepository = offerRepository;
         }
 
         public async Task<Offer> CreateOffer(string portfolioId, double quantity, double unitPrice)
@@ -28,7 +30,16 @@ namespace OfferCounter.Domain.Offers
 
             var offer = new Offer(portfolio, unitPrice, quantity);
             offer.Process();
-            return offer;
+            return await _offerRepository.Insert(offer);
+        }
+
+        public async Task Delete(string offerId)
+        {
+             var offer = await _offerRepository.Get(offerId);
+            if (offer == null)
+                throw new OfferNotFoundException();
+            offer.Cancel();
+            await _offerRepository.Delete(offer);
 
         }
     }

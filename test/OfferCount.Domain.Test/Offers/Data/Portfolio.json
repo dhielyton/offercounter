@@ -1,0 +1,19 @@
+[
+  {
+    "Id": "5cd4719d-8c5f-40c7-9203-5d50afcec488",
+    "Address": "5cd4719d-8c5f-40c7-9203-5d50afcec488",
+    "CurrencyId": "b0393c56-b9e5-4bc2-a7fc-3f58231eec9c",
+    "Quantity": 10,
+    "AccountId": "b79c5e5c-bcc4-4103-a4ef-dbad09825239"
+
+  },
+  {
+    "Id": "fe6f81af-83d6-43e9-a53a-b03cc517cd6f",
+    "Address": "5cd4719d-8c5f-40c7-9203-5d50afcec488",
+    "CurrencyId": "71b79c73-89f0-4669-8cef-590d6197cebd",
+    "Quantity": 0,
+    "AccountId": "b79c5e5c-bcc4-4103-a4ef-dbad09825239"
+
+  }
+
+]
