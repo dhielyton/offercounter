@@ -4,23 +4,18 @@ using OfferCounter.Domain.Portfolios;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 using Moq;
-using OfferCounter.Domain.Accounts;
-using OfferCounter.Domain.Currencies;
-using OfferCounter.Domain.Users;
-using System.Text.Json;
 using Newtonsoft.Json;
 using System.IO;
 
 namespace OfferCount.Domain.Test.Offers
 {
-    public class OfferServiceTest
+    public class OfferServiceCreateTest
     {
         private Mock<IPortfolioRepository> _portfolioRepository = new Mock<IPortfolioRepository>();
-        public OfferServiceTest()
+        public OfferServiceCreateTest()
         {
 
         }
@@ -79,11 +74,7 @@ namespace OfferCount.Domain.Test.Offers
 
         }
 
-        [Fact]
-        public async Task DeleteOfferWithSucessfully()
-        {
-
-        }
+       
 
 
     }
