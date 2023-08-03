@@ -3,6 +3,7 @@ using OfferCounter.Domain.Currencies;
 using OfferCounter.Domain.Offers;
 using OfferCounter.Domain.Portfolios;
 using System;
+using System.Text.Json;
 using Xunit;
 
 namespace OfferCounter.Domain.Test.Offers
@@ -19,6 +20,7 @@ namespace OfferCounter.Domain.Test.Offers
             offer.UnitPrice.Should().BeGreaterThan(0);
             offer.Quantity.Should().BeGreaterThan(0);
             offer.Portfolio.Should().NotBeNull();
+            var json = JsonSerializer.Serialize(offer);
 
         }
 

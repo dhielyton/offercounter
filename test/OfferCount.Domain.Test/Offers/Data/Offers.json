@@ -1,0 +1,20 @@
+[
+  {
+    "Id": "63dfe1a8-74d2-400e-bf6a-db1f10d4cfeb",
+    "PortfolioId": "5cd4719d-8c5f-40c7-9203-5d50afcec488",
+    "UnitPrice": 1,
+    "Quantity": 1,
+    "Situation": 1,
+    "CrationDate": "2023-08-03T00:00:00",
+    "Deleted": false
+  },
+  {
+    "Id": "f69230ad-5591-4228-ab86-e8eb336d4cd3",
+    "PortfolioId": "5cd4719d-8c5f-40c7-9203-5d50afcec488",
+    "UnitPrice": 1,
+    "Quantity": 1,
+    "Situation": 1,
+    "CrationDate": "2023-08-03T00:00:00",
+    "Deleted": false
+  }
+]
