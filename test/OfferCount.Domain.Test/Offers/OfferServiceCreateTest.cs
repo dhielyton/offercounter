@@ -42,7 +42,7 @@ namespace OfferCount.Domain.Test.Offers
             configureGetPortfolioRepository(_portfolioRepository, portfolioId);
             var offerRepository = new Mock<IOfferRepository>();
             var service = new OfferService(_portfolioRepository.Object, offerRepository.Object);
-            Offer offer = await service.CreateOffer(portfolioId, 1, 1);
+            Offer offer = await service.Create(portfolioId, 1, 1);
 
 
         }
@@ -54,7 +54,7 @@ namespace OfferCount.Domain.Test.Offers
             configureGetPortfolioRepository(_portfolioRepository, portfolioId);
             var offerRepository = new Mock<IOfferRepository>();
             var service = new OfferService(_portfolioRepository.Object, offerRepository.Object);
-            Action action = () => service.CreateOffer(portfolioId, 1, 1).Wait();
+            Action action = () => service.Create(portfolioId, 1, 1).Wait();
             action.Should().Throw<PortfolioNotFoundException>();
 
 
@@ -67,7 +67,7 @@ namespace OfferCount.Domain.Test.Offers
             configureGetPortfolioRepository(_portfolioRepository, portfolioId);
             var offerRepository = new Mock<IOfferRepository>();
             var service = new OfferService(_portfolioRepository.Object, offerRepository.Object);
-            Action action = () => service.CreateOffer(portfolioId, 1, 1).Wait();
+            Action action = () => service.Create(portfolioId, 1, 1).Wait();
 
             action.Should().Throw<QuantityNotSufficentException>();
 

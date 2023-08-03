@@ -15,6 +15,10 @@ namespace OfferCounter.Infrastructure.Context
 {
     public class OfferCounterContex: DbContext
     {
+        public OfferCounterContex(DbContextOptions<OfferCounterContex> options):base(options)
+        {
+            
+        }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

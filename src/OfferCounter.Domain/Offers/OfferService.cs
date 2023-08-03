@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace OfferCounter.Domain.Offers
 {
-    public class OfferService
+    public class OfferService: IOfferService
     {
         private IPortfolioRepository _portfoliosRepository;
         private IOfferRepository _offerRepository;
@@ -18,7 +18,7 @@ namespace OfferCounter.Domain.Offers
             _offerRepository = offerRepository;
         }
 
-        public async Task<Offer> CreateOffer(string portfolioId, double quantity, double unitPrice)
+        public async Task<Offer> Create(string portfolioId, double quantity, double unitPrice)
         {
             var portfolio = await _portfoliosRepository.Get(portfolioId);
 
