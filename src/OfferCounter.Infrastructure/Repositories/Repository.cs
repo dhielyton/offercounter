@@ -30,7 +30,7 @@ namespace OfferCounter.Infrastructure.Repositories
 
         public Task<TEntity> Get(string Id)
         {
-            return _dbSet.Where(x => x.Id == Id).FirstOrDefaultAsync();
+            return _dbSet.Where(x => x.Id == Id && x.Deleted == false).FirstOrDefaultAsync();
         }
 
         public async Task<TEntity> Insert(TEntity entity)
