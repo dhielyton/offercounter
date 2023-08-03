@@ -6,7 +6,7 @@ using OfferCounter.Domain.Portfolios;
 using OfferCounter.Domain.Users;
 using OfferCounter.Infrastructure.Context;
 using OfferCounter.Infrastructure.Repositories;
-
+using Microsoft.Extensions.Configuration;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -16,8 +16,10 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<OfferCounterContex>(options => 
-options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddDbContext<OfferCounterContex>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionString.ConnectionDB"));
+});
 
 builder.Services.AddScoped<ICriptoCurrencyRepository, CriptoCurrencyRepository>();
 builder.Services.AddScoped<IUserRepository, UserRespository>();
