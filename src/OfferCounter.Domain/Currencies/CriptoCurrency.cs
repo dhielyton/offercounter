@@ -9,6 +9,10 @@ namespace OfferCounter.Domain.Currencies
 {
     public class CriptoCurrency: Entity
     {
+        public CriptoCurrency()
+        {
+            
+        }
         public CriptoCurrency(string abbreviation, string name)
         {
             Abbreviation = abbreviation;

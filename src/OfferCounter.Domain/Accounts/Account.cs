@@ -10,6 +10,10 @@ namespace OfferCounter.Domain.Accounts
 {
     public class Account: Entity
     {
+        public Account()
+        {
+            
+        }
         public Account(User user)
         {
             User = user;

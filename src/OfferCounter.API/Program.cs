@@ -15,10 +15,11 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
+var test = builder.Configuration["ConnectionString:ConnectionDB"];
 builder.Services.AddDbContext<OfferCounterContex>(options =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionString.ConnectionDB"));
+    options.UseSqlServer(builder.Configuration["ConnectionString:ConnectionDB"]);
+
 });
 
 builder.Services.AddScoped<ICriptoCurrencyRepository, CriptoCurrencyRepository>();

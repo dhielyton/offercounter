@@ -6,7 +6,10 @@ namespace OfferCounter.Domain.Offers
 {
     public class Offer : Entity
     {
-
+        public Offer()
+        {
+            
+        }
         public Offer(Portfolio portfolio, double unitPrice, double quantity)
         {
             Id = Guid.NewGuid().ToString();

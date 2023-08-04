@@ -9,6 +9,10 @@ namespace OfferCounter.Domain.Users
 {
     public class User:Entity
     {
+        public User()
+        {
+            
+        }
         public User(string name)
         {
             Name = name;
