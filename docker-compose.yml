@@ -1,0 +1,13 @@
+version: '3.4'
+
+services:
+  sqldata:
+    image: mcr.microsoft.com/mssql/server:2019-latest 
+    
+  offercounter.api:
+    image: ${DOCKER_REGISTRY-}offercounterapi
+    build:
+      context: .
+      dockerfile: src/OfferCounter.API/Dockerfile
+    depends_on:
+      - sqldata

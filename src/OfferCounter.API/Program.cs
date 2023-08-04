@@ -21,7 +21,7 @@ builder.Services.AddDbContext<OfferCounterContex>(options =>
     options.UseSqlServer(builder.Configuration["ConnectionString:ConnectionDB"]);
 
 });
-
+builder.Services.AddSingleton<IHttpContextAccessor,HttpContextAccessor>();
 builder.Services.AddScoped<ICriptoCurrencyRepository, CriptoCurrencyRepository>();
 builder.Services.AddScoped<IUserRepository, UserRespository>();
 builder.Services.AddScoped<IAccountRepository, AccountRepository>();
