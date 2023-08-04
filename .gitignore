@@ -19,3 +19,5 @@
 /src/OfferCounter.Infrastructure/obj
 /src/OfferCounter.API/obj
 /src/OfferCounter.API/bin/Debug/net6.0
+/bin/Debug
+/obj
