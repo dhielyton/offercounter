@@ -23,7 +23,7 @@ namespace OfferCounter.API.Controllers
 
         public async Task<IActionResult> Delete(string offerId, [FromServices] IOfferService offerService, [FromServices] IUserService userService)
         {
-            await offerService.Delete(offerId);
+            await offerService.Delete(offerId, userService.GetUserId());
             return Ok();
         }
 
