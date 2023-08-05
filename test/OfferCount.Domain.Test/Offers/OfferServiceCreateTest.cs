@@ -9,12 +9,14 @@ using Xunit;
 using Moq;
 using Newtonsoft.Json;
 using System.IO;
+using MediatR;
 
 namespace OfferCount.Domain.Test.Offers
 {
     public class OfferServiceCreateTest
     {
         private Mock<IPortfolioRepository> _portfolioRepository = new Mock<IPortfolioRepository>();
+        private Mock<IMediator> mediator = new Mock<IMediator>();
         public OfferServiceCreateTest()
         {
 
@@ -41,7 +43,7 @@ namespace OfferCount.Domain.Test.Offers
             var portfolioId = "5cd4719d-8c5f-40c7-9203-5d50afcec488";
             configureGetPortfolioRepository(_portfolioRepository, portfolioId);
             var offerRepository = new Mock<IOfferRepository>();
-            var service = new OfferService(_portfolioRepository.Object, offerRepository.Object);
+            var service = new OfferService(_portfolioRepository.Object, offerRepository.Object, mediator.Object);
             Offer offer = await service.Create(portfolioId, 1, 1);
 
 
@@ -53,7 +55,7 @@ namespace OfferCount.Domain.Test.Offers
             var portfolioId = "302a80c7-0af3-4be2-8a2c-7b6f4101f0c4";
             configureGetPortfolioRepository(_portfolioRepository, portfolioId);
             var offerRepository = new Mock<IOfferRepository>();
-            var service = new OfferService(_portfolioRepository.Object, offerRepository.Object);
+            var service = new OfferService(_portfolioRepository.Object, offerRepository.Object, mediator.Object);
             Action action = () => service.Create(portfolioId, 1, 1).Wait();
             action.Should().Throw<PortfolioNotFoundException>();
 
@@ -66,7 +68,7 @@ namespace OfferCount.Domain.Test.Offers
             var portfolioId = "fe6f81af-83d6-43e9-a53a-b03cc517cd6f";
             configureGetPortfolioRepository(_portfolioRepository, portfolioId);
             var offerRepository = new Mock<IOfferRepository>();
-            var service = new OfferService(_portfolioRepository.Object, offerRepository.Object);
+            var service = new OfferService(_portfolioRepository.Object, offerRepository.Object, mediator.Object);
             Action action = () => service.Create(portfolioId, 1, 1).Wait();
 
             action.Should().Throw<QuantityNotSufficentException>();

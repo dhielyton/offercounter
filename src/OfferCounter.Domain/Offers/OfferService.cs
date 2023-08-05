@@ -1,4 +1,6 @@
-﻿using OfferCounter.Domain.Portfolios;
+﻿using MediatR;
+using OfferCounter.Domain.Portfolios;
+using OfferCounter.Domain.SharedKernel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace OfferCounter.Domain.Offers
 {
-    public class OfferService: IOfferService
+    public class OfferService : Service, IOfferService
     {
         private IPortfolioRepository _portfoliosRepository;
         private IOfferRepository _offerRepository;
 
-        public OfferService(IPortfolioRepository portfoliosRepository, IOfferRepository offerRepository)
+        public OfferService(IPortfolioRepository portfoliosRepository, IOfferRepository offerRepository, IMediator mediator):base(mediator)
         {
             _portfoliosRepository = portfoliosRepository;
             _offerRepository = offerRepository;
@@ -22,24 +24,30 @@ namespace OfferCounter.Domain.Offers
         {
             var portfolio = await _portfoliosRepository.Get(portfolioId);
 
-            if(portfolio == null)
+            if (portfolio == null)
                 throw new PortfolioNotFoundException();
 
-            if(portfolio.Quantity == 0)
+            if (portfolio.Quantity == 0)
                 throw new QuantityNotSufficentException();
 
             var offer = new Offer(portfolio, unitPrice, quantity);
             offer.Process();
-            return await _offerRepository.Insert(offer);
+            await _offerRepository.Insert(offer);
+
+            Publish(new OfferCreatedDomainEvent(offer));
+
+            return offer;
         }
 
         public async Task Delete(string offerId)
         {
-             var offer = await _offerRepository.Get(offerId);
+            var offer = await _offerRepository.Get(offerId);
             if (offer == null)
                 throw new OfferNotFoundException();
             offer.Cancel();
             await _offerRepository.Delete(offer);
+
+            Publish(new OfferDeletedDomainEvent(offer));
 
         }
     }

@@ -7,13 +7,14 @@ namespace OfferCounter.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    
     public class OfferController : Controller
     {
 
         [HttpPost]
-
-        public async Task<IActionResult> Create(OfferCreateDTO dto, [FromServices] IOfferService offerService, [FromServices] IUserService userService)
+        public async Task<IActionResult> Create([FromForm]OfferCreateDTO dto, [FromServices] IOfferService offerService, [FromServices] IUserService userService)
         {
+            var user = userService.GetUserId();
             var offer = await offerService.Create(dto.PortfolioId, dto.Quantity, dto.UnitPrice);
             return Ok(offer);
         }

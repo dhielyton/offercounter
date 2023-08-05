@@ -33,6 +33,11 @@ namespace OfferCounter.Domain.Portfolios
 
             Quantity -= quantity;
         }
+
+        public void Increase(double quantity)
+        {
+            Quantity += quantity;
+        }
         
     }
 }

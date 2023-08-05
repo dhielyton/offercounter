@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using MediatR;
 using Moq;
 using Newtonsoft.Json;
 using OfferCounter.Domain.Offers;
@@ -16,7 +17,7 @@ namespace OfferCount.Domain.Test.Offers
     public class OfferServiceDeleteTest
     {
         private Mock<IOfferRepository> _offerRepository = new Mock<IOfferRepository>();
-
+        private Mock<IMediator> mediator = new Mock<IMediator>();
 
         private void configureGetOffer(Mock<IOfferRepository> mock, string offerId)
         {
@@ -39,7 +40,7 @@ namespace OfferCount.Domain.Test.Offers
         {
             var offerId = "63dfe1a8-74d2-400e-bf6a-db1f10d4cfeb";
             configureGetOffer(_offerRepository, offerId);
-            var offerService = new OfferService(new Mock<IPortfolioRepository>().Object, _offerRepository.Object);
+            var offerService = new OfferService(new Mock<IPortfolioRepository>().Object, _offerRepository.Object, mediator.Object);
             offerService.Delete(offerId);
         }
 
@@ -48,7 +49,7 @@ namespace OfferCount.Domain.Test.Offers
         {
             var offerId = "bbad7b49-e108-4c40-a95c-e317539bfe83";
             configureGetOffer(_offerRepository, offerId);
-            var offerService = new OfferService(new Mock<IPortfolioRepository>().Object, _offerRepository.Object);
+            var offerService = new OfferService(new Mock<IPortfolioRepository>().Object, _offerRepository.Object, mediator.Object);
             Action action = ()=> offerService.Delete(offerId).Wait();
             action.Should().Throw<OfferNotFoundException>();
         }
