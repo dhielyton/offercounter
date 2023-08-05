@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OfferCounter.Infrastructure.Context;
 
@@ -11,9 +12,10 @@ using OfferCounter.Infrastructure.Context;
 namespace OfferCounter.Infrastructure.Migrations
 {
     [DbContext(typeof(OfferCounterContex))]
-    partial class OfferCounterContexModelSnapshot : ModelSnapshot
+    [Migration("20230805165519_AssUserIdOnOffer")]
+    partial class AssUserIdOnOffer
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
