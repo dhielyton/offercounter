@@ -25,6 +25,7 @@ namespace OfferCount.Domain.Test.Offers
         public OfferService configureService(string portfolioId, string userId)
         {
             configureGetPortfolioRepository(_portfolioRepository, portfolioId);
+            configurationUserRepository(_userRepository, userId);
             var offerRepository = new Mock<IOfferRepository>();
             return new OfferService(_portfolioRepository.Object, offerRepository.Object, _userRepository.Object, mediator.Object);
 
@@ -73,12 +74,26 @@ namespace OfferCount.Domain.Test.Offers
         public async Task CreateOfferToCurrencyThrowsPortfolioEnteredDoesntMatchWithUserException()
         {
             var portfolioId = "fe6f81af-83d6-43e9-a53a-b03cc517cd6f";
-            var userId = "2b765496-ec85-4551-8315-6620a5ffe34f";
+            var userId = "216ee36c-28d1-40f3-9bc0-cbe58f730540";
 
             var service = configureService(portfolioId, userId); 
             Action action = () => service.Create(portfolioId, 1, 1, userId).Wait();
 
             action.Should().Throw<PortfolioEnteredDoesntMatchWithUserException>();
+
+
+        }
+
+        [Fact]
+        public async Task CreateOfferToCurrencyThrowsUserNotFoundException()
+        {
+            var portfolioId = "fe6f81af-83d6-43e9-a53a-b03cc517cd6f";
+            var userId = "2b765496-ec85-4551-8315-6620a5ffe34f";
+
+            var service = configureService(portfolioId, userId);
+            Action action = () => service.Create(portfolioId, 1, 1, userId).Wait();
+
+            action.Should().Throw<UserNotFoundException>();
 
 
         }

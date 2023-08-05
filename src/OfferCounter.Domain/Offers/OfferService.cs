@@ -24,6 +24,11 @@ namespace OfferCounter.Domain.Offers
 
         public async Task<Offer> Create(string portfolioId, double quantity, double unitPrice, string userId)
         {
+            var user = await _userRepository.Get(userId);
+
+            if (user == null)
+                throw new UserNotFoundException();
+
             var portfolio = await _portfoliosRepository.Get(portfolioId);
 
             if (portfolio == null)
@@ -44,11 +49,23 @@ namespace OfferCounter.Domain.Offers
             return offer;
         }
 
-        public async Task Delete(string offerId)
+        public async Task Delete(string offerId, string userId)
         {
+           
+
             var offer = await _offerRepository.Get(offerId);
+
             if (offer == null)
                 throw new OfferNotFoundException();
+
+            var user = await _userRepository.Get(userId);
+
+            if (user == null)
+                throw new UserNotFoundException();
+
+            if (offer.UserId != userId)
+                throw new OnlyTheOwnerUserCanDeleteException();
+
             offer.Cancel();
             await _offerRepository.Delete(offer);
 
