@@ -16,15 +16,17 @@ namespace OfferCounter.Domain.Offers
             Portfolio = portfolio;
             UnitPrice = unitPrice;
             Quantity = quantity;
+            CreationDate = DateTime.Now;
             Situation = Situation.OPEN;
+            UserId = portfolio.Account.UserId;
         }
         public Portfolio Portfolio { get; private set; }
         public string PortfolioId { get; set; }
         public double UnitPrice { get; private set; }
         public double Quantity { get; private set; }
         public Situation Situation { get; private set; }
-
-        public DateTime CrationDate { get; set; }
+        public string UserId { get; set; }
+        public DateTime CreationDate { get; set; }
 
         public void Process()
         {

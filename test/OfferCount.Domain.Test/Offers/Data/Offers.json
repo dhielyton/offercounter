@@ -5,6 +5,7 @@
     "UnitPrice": 1,
     "Quantity": 1,
     "Situation": 1,
+    "UserId": "df7d23f2-af87-46b2-9ffc-0f035687e9a8",
     "CrationDate": "2023-08-03T00:00:00",
     "Deleted": false
   },
@@ -14,6 +15,7 @@
     "UnitPrice": 1,
     "Quantity": 1,
     "Situation": 1,
+    "UserId": "df7d23f2-af87-46b2-9ffc-0f035687e9a8",
     "CrationDate": "2023-08-03T00:00:00",
     "Deleted": false
   }
