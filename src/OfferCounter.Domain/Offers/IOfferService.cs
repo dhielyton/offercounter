@@ -8,7 +8,7 @@ namespace OfferCounter.Domain.Offers
 {
     public interface  IOfferService
     {
-        Task<Offer> Create(string portfolioId, double quantity, double unitPrice);
+        Task<Offer> Create(string portfolioId, double quantity, double unitPrice, string userId);
         Task Delete(string offerId);
     }
 }

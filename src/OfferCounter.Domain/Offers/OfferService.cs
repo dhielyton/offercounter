@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using OfferCounter.Domain.Portfolios;
 using OfferCounter.Domain.SharedKernel;
+using OfferCounter.Domain.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,19 +14,23 @@ namespace OfferCounter.Domain.Offers
     {
         private IPortfolioRepository _portfoliosRepository;
         private IOfferRepository _offerRepository;
-
-        public OfferService(IPortfolioRepository portfoliosRepository, IOfferRepository offerRepository, IMediator mediator):base(mediator)
+        private IUserRepository _userRepository;
+        public OfferService(IPortfolioRepository portfoliosRepository, IOfferRepository offerRepository, IUserRepository userRepository, IMediator mediator) : base(mediator)
         {
             _portfoliosRepository = portfoliosRepository;
             _offerRepository = offerRepository;
+            _userRepository = userRepository;
         }
 
-        public async Task<Offer> Create(string portfolioId, double quantity, double unitPrice)
+        public async Task<Offer> Create(string portfolioId, double quantity, double unitPrice, string userId)
         {
             var portfolio = await _portfoliosRepository.Get(portfolioId);
 
             if (portfolio == null)
                 throw new PortfolioNotFoundException();
+
+            if (portfolio.Account.UserId != userId)
+                throw new PortfolioEnteredDoesntMatchWithUserException();
 
             if (portfolio.Quantity == 0)
                 throw new QuantityNotSufficentException();

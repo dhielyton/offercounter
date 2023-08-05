@@ -14,33 +14,25 @@ using Xunit;
 
 namespace OfferCount.Domain.Test.Offers
 {
-    public class OfferServiceDeleteTest
+    public class OfferServiceDeleteTest : OfferServiceTestBase
     {
-        private Mock<IOfferRepository> _offerRepository = new Mock<IOfferRepository>();
-        private Mock<IMediator> mediator = new Mock<IMediator>();
+       
 
-        private void configureGetOffer(Mock<IOfferRepository> mock, string offerId)
+        public OfferService configureService(string offerId)
         {
-            mock.Setup(x => x.Get(It.IsAny<string>())).Returns(() =>
-            {
-                using (StreamReader r = new StreamReader(@"Offers\Data\Offers.json"))
-                {
-
-                    var json = r.ReadToEnd();
-                    var results = JsonConvert.DeserializeObject<List<Offer>>(json);
-                    var result = results.Where(x => x.Id == offerId).FirstOrDefault();
-                    return Task.FromResult(result);
-                }
-            });
+            configureGetOffer(_offerRepository, offerId);
+            return  new OfferService(new Mock<IPortfolioRepository>().Object, _offerRepository.Object, _userRepository.Object, mediator.Object);
         }
+
+
 
 
         [Fact]
         public void DeleteOfferWithSucessfully()
         {
             var offerId = "63dfe1a8-74d2-400e-bf6a-db1f10d4cfeb";
-            configureGetOffer(_offerRepository, offerId);
-            var offerService = new OfferService(new Mock<IPortfolioRepository>().Object, _offerRepository.Object, mediator.Object);
+
+            var offerService = configureService(offerId);
             offerService.Delete(offerId);
         }
 
@@ -48,9 +40,9 @@ namespace OfferCount.Domain.Test.Offers
         public void DeleteOfferThrowsOfferNotFoundException()
         {
             var offerId = "bbad7b49-e108-4c40-a95c-e317539bfe83";
-            configureGetOffer(_offerRepository, offerId);
-            var offerService = new OfferService(new Mock<IPortfolioRepository>().Object, _offerRepository.Object, mediator.Object);
-            Action action = ()=> offerService.Delete(offerId).Wait();
+
+            var offerService = configureService(offerId);
+            Action action = () => offerService.Delete(offerId).Wait();
             action.Should().Throw<OfferNotFoundException>();
         }
     }

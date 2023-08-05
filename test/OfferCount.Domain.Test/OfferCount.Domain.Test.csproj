@@ -33,6 +33,9 @@
     <None Update="Offers\Data\Portfolio.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Offers\Data\Users.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Portfolios\Data\Portfolio.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

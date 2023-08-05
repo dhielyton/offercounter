@@ -14,8 +14,8 @@ namespace OfferCounter.API.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromForm]OfferCreateDTO dto, [FromServices] IOfferService offerService, [FromServices] IUserService userService)
         {
-            var user = userService.GetUserId();
-            var offer = await offerService.Create(dto.PortfolioId, dto.Quantity, dto.UnitPrice);
+         
+            var offer = await offerService.Create(dto.PortfolioId, dto.Quantity, dto.UnitPrice, userService.GetUserId());
             return Ok(offer);
         }
 
