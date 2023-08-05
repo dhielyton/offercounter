@@ -98,6 +98,30 @@ namespace OfferCount.Domain.Test.Offers
 
         }
 
+        [Fact]
+        public async Task CreateOfferToCurrencyThrowsArgumentOutOfRangeExceptionForUnitPrice()
+        {
+            var portfolioId = "5cd4719d-8c5f-40c7-9203-5d50afcec488";
+            var userId = "df7d23f2-af87-46b2-9ffc-0f035687e9a8";
+
+            var service = configureService(portfolioId, userId);
+            Action action = () =>  service.Create(portfolioId, 1, 0, userId).Wait();
+            
+            action.Should().Throw<ArgumentOutOfRangeException>("unit price cannot be less than or equal to zero");
+        }
+
+        [Fact]
+        public async Task CreateOfferToCurrencyThrowsArgumentOutOfRangeExceptionForQuantity()
+        {
+            var portfolioId = "5cd4719d-8c5f-40c7-9203-5d50afcec488";
+            var userId = "df7d23f2-af87-46b2-9ffc-0f035687e9a8";
+
+            var service = configureService(portfolioId, userId);
+            Action action = () => service.Create(portfolioId, 0, 1, userId).Wait();
+
+            action.Should().Throw<ArgumentOutOfRangeException>("unit price cannot be less than or equal to zero");
+        }
+
 
 
 

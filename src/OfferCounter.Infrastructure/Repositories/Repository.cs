@@ -14,7 +14,7 @@ namespace OfferCounter.Infrastructure.Repositories
     public abstract class Repository<TEntity> where TEntity : Entity
     {
         private DbContext _dbContext;
-        private DbSet<TEntity> _dbSet;
+        protected DbSet<TEntity> _dbSet;
         public Repository( OfferCounterContex offerCounterContex)
         {
             _dbContext = offerCounterContex;

@@ -24,6 +24,12 @@ namespace OfferCounter.Domain.Offers
 
         public async Task<Offer> Create(string portfolioId, double quantity, double unitPrice, string userId)
         {
+            if (quantity <= 0)
+                throw new ArgumentOutOfRangeException("quantity cannot be less than or equal to zero");
+
+            if (unitPrice <= 0)
+                throw new ArgumentOutOfRangeException("unit price cannot be less than or equal to zero");
+
             var user = await _userRepository.Get(userId);
 
             if (user == null)
