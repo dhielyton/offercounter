@@ -7,7 +7,7 @@ using OfferCounter.Infrastructure.Context;
 
 namespace OfferCounter.API.Seed
 {
-    
+
     public class OfferCounterContextSeed
     {
         public static async Task SeedAsync(IHost app)
@@ -19,6 +19,8 @@ namespace OfferCounter.API.Seed
                 {
                     var service = scope.ServiceProvider;
                     var context = service.GetService<OfferCounterContex>();
+
+                    context.Database.Migrate();
 
                     if (!context.CryptoCurrencies.Any())
                     {
@@ -43,13 +45,14 @@ namespace OfferCounter.API.Seed
                     }
                 }
             }
-            catch ( Exception e)
+            catch (Exception e)
             {
 
                 throw;
             }
         }
-        static IEnumerable<CriptoCurrency> GetPreconfiguredCurrencies() {
+        static IEnumerable<CriptoCurrency> GetPreconfiguredCurrencies()
+        {
 
             return new List<CriptoCurrency>()
             {
@@ -86,7 +89,7 @@ namespace OfferCounter.API.Seed
 
         static IEnumerable<Portfolio> GetPreconfiguredPortfolios()
         {
-            return new List<Portfolio>() { 
+            return new List<Portfolio>() {
                 new Portfolio { Id ="5104b8c5-260f-401b-8db9-04f6bc59e4ee", CurrencyId="8004036e-6451-49bb-8e66-c5a3b832bf9b", AccountId ="1302876e-da49-4e61-a661-fea57b2ce20f", Address = "", Quantity = 10000},
                 new Portfolio { Id ="71318ce3-f948-4a59-84e7-be4a59319dcd", CurrencyId="f4c9080b-58aa-4fed-938c-6734557979db", AccountId ="1302876e-da49-4e61-a661-fea57b2ce20f", Address = "", Quantity = 10000},
                 new Portfolio { Id ="fbd83c00-174a-4468-81d9-cc34521e7d64", CurrencyId="7e0721da-26d0-4550-b159-53aea5591487", AccountId ="1302876e-da49-4e61-a661-fea57b2ce20f", Address = "", Quantity = 10000},
