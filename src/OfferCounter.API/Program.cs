@@ -29,7 +29,7 @@ builder.Services.AddDbContext<OfferCounterContex>(options =>
 
 
 
-builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<Program>());
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<OfferCreatedDomainEvent>());
 builder.Services.AddSingleton<IHttpContextAccessor,HttpContextAccessor>();
 builder.Services.AddScoped<ICriptoCurrencyRepository, CriptoCurrencyRepository>();
 builder.Services.AddScoped<IUserRepository, UserRespository>();
